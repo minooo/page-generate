@@ -1,0 +1,11 @@
+// 公用的动画样式
+// https://daneden.github.io/animate.css/
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

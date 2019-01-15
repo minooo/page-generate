@@ -1,0 +1,42 @@
+// 公用的颜色样式
+// 字体色
+
+// #aaa 到 #eee
+$base-color-list: a, b, c, d, e;
+@each $i in $base-color-list {
+  .c-#{$i}#{$i}#{$i} {
+    color: #{'#'}#{$i}#{$i}#{$i};
+  }
+}
+
+// #333 主标题
+// #999 副标题
+// #666 内容文字
+@for $i from 1 through 3 {
+  .c#{$i*3}#{$i*3}#{$i*3} {
+    color: #{'#'}#{$i * 3}#{$i * 3}#{$i * 3};
+  }
+}
+
+// 网站基础颜色
+$color-list: (
+  main: #4c8dfc,
+  second: #ff764c,
+  white: #fff
+);
+@each $key, $val in $color-list {
+  .c-#{$key} {
+    color: $val;
+  }
+  .bg-#{$key} {
+    background-color: $val;
+  }
+}
+
+.border {
+  border: 1px solid #ededed;
+}
+
+.b-b {
+  border-bottom: 1px solid #ededed;
+}
