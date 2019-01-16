@@ -39,12 +39,12 @@
   overflow: hidden;
 }
 
-.o-s-y {
+.oy-s {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
 
-.o-s-x {
+.ox-s {
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 }
@@ -62,27 +62,27 @@
 }
 
 // 文本方向
-.t-l {
+.ta-l {
   text-align: left;
 }
 
-.t-r {
+.ta-r {
   text-align: right;
 }
 
-.t-c {
+.ta-c {
   text-align: center;
 }
 
 // 字符溢出隐藏
-.t-o-o {
+.to-e {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 // 字符超出一行溢出隐藏
-.t-o-1 {
+.lc-1 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -91,7 +91,7 @@
 }
 
 // 字符超出两行溢出隐藏
-.t-o-2 {
+.lc-2 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -100,7 +100,7 @@
 }
 
 // 字符超出三行溢出隐藏
-.t-o-3 {
+.lc-3 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -108,7 +108,7 @@
   -webkit-box-orient: vertical;
 }
 
-.l-s-n {
+.ls-n {
   list-style: none;
 }
 
@@ -123,4 +123,8 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.move {
+  cursor: move;
 }
