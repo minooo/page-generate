@@ -1,22 +1,15 @@
 <template>
-  <draggable @start="onDragStart" @end="onDragEnd">
-    <div class="flex fd-c ai-c w-100 move">
-      <i :class="`ivu-icon ivu-icon-md-${ico} f36`"></i>
-      <span>{{ text }}</span>
-    </div>
-  </draggable>
+  <div class="flex fd-c jc-c ai-c h-100 move">
+    <i :class="`ivu-icon ivu-icon-md-${ico} f30 mb5`"></i>
+    <span>{{ title }}</span>
+  </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
-
 export default {
-  components: {
-    draggable
-  },
   props: {
     // 检测类型 + 其他验证
-    text: {
+    title: {
       type: String,
       default: '组件名字',
       required: true,
@@ -28,26 +21,10 @@ export default {
       type: String,
       default: 'cube',
       required: true
-    }
-  },
-  data() {
-    return {
-      value: '',
-      single: false,
-      fromOptions: {
-        group: {
-          name: 'components',
-          pull: 'clone' // To clone: set pull to 'clone'
-        }
-      }
-    }
-  },
-  methods: {
-    onDragStart: function(e) {
-      console.log('start', e)
     },
-    onDragEnd: function(e) {
-      console.log('end', e)
+    comp: {
+      type: Object,
+      required: true
     }
   }
 }
