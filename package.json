@@ -4,7 +4,10 @@
   "description": "My epic Nuxt.js project",
   "author": "minooo",
   "private": true,
+  "homepage": "https://minooo.github.io/page-generate",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
@@ -15,6 +18,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
     "cross-env": "^5.2.0",
+    "gh-pages": "^2.0.1",
     "iview": "^3.2.2",
     "koa": "^2.5.2",
     "nuxt": "^2.0.0",
