@@ -1,6 +1,6 @@
 <template>
   <div class="flex fd-c jc-c ai-c h-100 move">
-    <i :class="`ivu-icon ivu-icon-md-${ico} f30 mb5`"></i>
+    <i :class="`ivu-icon ivu-icon-md-${ico} f30 mb5`"/>
     <span>{{ title }}</span>
   </div>
 </template>

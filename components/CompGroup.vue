@@ -8,7 +8,7 @@
         :title="item.title"
         :ico="item.ico"
         :comp="item.comp"
-      ></comp-group-list>
+      />
     </draggable>
   </div>
 </template>
