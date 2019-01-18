@@ -1,19 +1,14 @@
 const pkg = require('./package')
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/page-generate/'
-  }
-} : {}
-
+const isDp = process.env.DEPLOY_ENV === 'GH_PAGES'
 module.exports = {
   mode: 'spa',
-  ...routerBase,
   /*
    ** Headers of the page
    */
   head: {
     title: pkg.name,
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
       {
@@ -26,11 +21,13 @@ module.exports = {
         content: pkg.description
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: `${isDp ? '/page-generate' : ''}/favicon.ico`
+      }
+    ]
   },
 
   /*
@@ -64,6 +61,10 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  router: {
+    base: isDp ? '/page-generate/' : ''
+  },
+
   /*
    ** Build configuration
    */
@@ -71,7 +72,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    publicPath: '/minooo/',
+    publicPath: isDp ? '/minooo/' : '',
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
