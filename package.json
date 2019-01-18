@@ -6,7 +6,9 @@
   "private": true,
   "homepage": "https://minooo.github.io/page-generate",
   "scripts": {
-    "predeploy": "npm run build",
+    "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
+    "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
+    "predeploy": "npm run build:gh-pages && npm run generate:gh-pages",
     "deploy": "gh-pages -d dist",
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",

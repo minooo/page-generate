@@ -23,8 +23,7 @@
             v-model="list"
             class="f100 flex jc-c ai-c f16 rel delete"
             @change="onChange"
-          >
-          </draggable>
+          ></draggable>
         </div>
 
         <div class="page-border r4">
@@ -35,15 +34,21 @@
             class="ptb15 plr15"
             @change="onChange"
           >
-            <component v-for="(item, index) in list" :key="index" :is="item.comp.name">{{ item.comp.name }}</component>
+            <component
+              v-for="(item, index) in list"
+              :key="index"
+              :is="item.comp.name"
+            >{{ item.comp.name }}</component>
           </draggable>
         </div>
       </div>
 
-      <!-- 属性配置区 -->
+      <!-- JSON -->
       <div class="o-h r4 mr20" style="width: 290px">
         <div class="f18 bold lh150 ptb20 b-b mb20">JSON</div>
-        <div class="ptb15 plr15"><pre>{{ listString }}</pre></div>
+        <div class="ptb15 plr15">
+          <pre>{{ listString }}</pre>
+        </div>
       </div>
     </div>
   </div>
