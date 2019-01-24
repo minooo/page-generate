@@ -23,7 +23,7 @@ export default {
       required: true
     },
     comp: {
-      type: Object,
+      type: Array,
       required: true
     }
   }

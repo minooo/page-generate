@@ -7,7 +7,6 @@
 
 <script>
 import CompGroup from '~/components/CompGroup.vue'
-
 export default {
   components: {
     CompGroup
@@ -27,22 +26,47 @@ export default {
             {
               title: '输入框',
               ico: 'cube',
-              comp: {
-                name: 'Input',
-                prop: {
-                  placeholder: 'enter sth1'
+              comp: [
+                {
+                  name: 'FormItem',
+                  tag: 'f-input',
+                  prop: {
+                    label: 'Input'
+                  },
+                  comp: [
+                    {
+                      name: 'Input',
+                      prop: {
+                        placeholder: 'enter sth1'
+                      }
+                    }
+                  ]
                 }
-              }
+              ]
             },
             {
               title: '多选框',
               ico: 'cube',
-              comp: {
-                name: 'Checkbox',
-                prop: {
-                  placeholder: 'enter sth2'
+              comp: [
+                {
+                  name: 'FormItem',
+                  tag: 'f-checkbox',
+                  prop: {
+                    label: 'Checkbox'
+                  },
+                  comp: [
+                    {
+                      name: 'CheckboxGroup',
+                      comp: [
+                        { name: 'Checkbox', prop: { label: 'Eat' } },
+                        { name: 'Checkbox', prop: { label: 'Sleep' } },
+                        { name: 'Checkbox', prop: { label: 'Run' } },
+                        { name: 'Checkbox', prop: { label: 'Movie' } }
+                      ]
+                    }
+                  ]
                 }
-              }
+              ]
             }
           ]
         }

@@ -3,11 +3,11 @@
     <!-- 头部 -->
     <div class="flex mb20 b-b">
       <div
-        :class="`f18 bold lh150 ptb20 f00a pointer mr20 ${viewable ? '' : 'c999'}`"
+        :class="`f18 bold lh150 ptb20 f00a pointer mr20 us-n ${viewable ? '' : 'c999'}`"
         @click="viewable = true"
       >实时预览区</div>
       <div
-        :class="`f18 bold lh150 ptb20 f00a pointer ${viewable ? 'c999' : ''}`"
+        :class="`f18 bold lh150 ptb20 f00a pointer us-n ${viewable ? 'c999' : ''}`"
         @click="viewable = false"
       >生成JSON</div>
       <draggable
@@ -19,21 +19,34 @@
     </div>
     <!-- 内容 -->
     <div class="page-border r4">
-      <draggable
-        v-if="viewable"
-        :style="{minHeight: '20px'}"
-        :options="dragOptions"
-        v-model="list"
-        class="ptb15 plr15"
-      >
-        <component
-          v-for="(item, index) in list"
-          :is="item.comp.name"
-          :key="index"
-          v-bind="item.comp.prop"
-        >{{ item.comp.name }}</component>
-      </draggable>
-
+      <Form v-if="viewable" :label-width="80">
+        <draggable
+          :style="{minHeight: '20px'}"
+          :options="dragOptions"
+          v-model="list"
+          class="ptb15 plr15"
+        >
+          <div v-if="list.length === 0">初始化</div>
+          <template v-for="(item, index) in list" v-else>
+            <div v-for="x in item.comp" :key="$uuid.v4()" @click="onComp(x, index)">
+              <component :is="x.name" v-bind="x.prop">
+                <template v-if="x.comp">
+                  <component v-for="m in x.comp" :key="$uuid.v4()" :is="m.name" v-bind="m.prop">
+                    <template v-if="m.comp">
+                      <component
+                        v-for="n in m.comp"
+                        :key="$uuid.v4()"
+                        :is="n.name"
+                        v-bind="n.prop"
+                      />
+                    </template>
+                  </component>
+                </template>
+              </component>
+            </div>
+          </template>
+        </draggable>
+      </Form>
       <div v-else class="ptb15 plr15">
         <pre>{{ listString }}</pre>
       </div>
@@ -66,6 +79,21 @@ export default {
     listString() {
       const result = this.list.map(x => x.comp)
       return JSON.stringify(result, null, 2)
+    }
+  },
+  mounted() {
+    const app = this
+    this.$root.$on('changelist', function(param) {
+      const { curlist, index } = param
+      console.log('ccc', curlist)
+      app.list.splice(index, 1, { ...app[index], comp: curlist })
+      console.log('app.list', app.list)
+    })
+  },
+  methods: {
+    onComp: function(item, index) {
+      console.log('list', this.list)
+      this.$root.$emit('curlist', { item, index })
     }
   }
 }
