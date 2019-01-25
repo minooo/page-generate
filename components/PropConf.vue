@@ -5,10 +5,33 @@
       <Form :model="curlist" label-position="top">
         <template v-if="curlist.tag === 'f-input'">
           <FormItem label="标题">
-            <Input v-model="curlist.prop.label"/>
+            <Input :maxlength="10" v-model="curlist.prop.label"/>
           </FormItem>
           <FormItem label="占位内容">
-            <Input v-model="curlist.comp[0].prop.placeholder"/>
+            <Input :maxlength="10" v-model="curlist.comp[0].prop.placeholder"/>
+          </FormItem>
+        </template>
+        <template v-else-if="curlist.tag === 'f-checkbox'">
+          <FormItem label="标题">
+            <Input :maxlength="10" v-model="curlist.prop.label"/>
+          </FormItem>
+          <FormItem label="子选项">
+            <FormItem v-for="(item, index) in curlist.comp[0].comp" :key="index">
+              <Row>
+                <Col span="12">
+                  <Input :maxlength="10" v-model="item.prop.label" placeholder="Enter something..."></Input>
+                </Col>
+                <Col span="4" offset="1">
+                  <Button @click="handleRemove(index)">删除</Button>
+                </Col>
+              </Row>
+              <div class="mb10"/>
+            </FormItem>
+            <Row>
+              <Col span="12">
+                <Button type="dashed" @click="handleAdd" icon="plus-round">添加子项</Button>
+              </Col>
+            </Row>
           </FormItem>
         </template>
       </Form>
@@ -38,11 +61,31 @@ export default {
   mounted() {
     const app = this
     this.$root.$on('curlist', function(param) {
-      console.log('on lala', param)
       app.curlist = JSON.parse(JSON.stringify(param.item))
-      console.log('kk', this, this.curlist)
       app.index = param.index
     })
+  },
+  methods: {
+    handleRemove: function(index) {
+      const comp = [...this.curlist.comp[0].comp]
+      comp.splice(index, 1)
+      this.curlist = {
+        ...this.curlist,
+        comp: [{ name: 'CheckboxGroup', comp }]
+      }
+    },
+    handleAdd: function() {
+      const comp = [...this.curlist.comp[0].comp]
+      comp.push({
+        name: 'Checkbox',
+        prop: { label: 'Item' }
+      })
+
+      this.curlist = {
+        ...this.curlist,
+        comp: [{ name: 'CheckboxGroup', comp }]
+      }
+    }
   }
 }
 </script>

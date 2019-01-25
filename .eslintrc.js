@@ -16,6 +16,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/html-self-closing': 'off',
-    'vue/valid-v-for': 'off'
+    'vue/valid-v-for': 'off',
+    'vue/no-parsing-error': 'off',
+    'vue/html-indent': 'off',
+    'vue/attributes-order': 'off'
   }
 }

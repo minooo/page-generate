@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-main c-white plr20 ptb15 f18 bold">页面构造器（v0.0.1）</div>
+    <div class="bg-main c-white plr20 ptb15 f18 bold">页面构造器（v0.0.2）</div>
     <div class="flex plr20">
       <!-- 组件列表区 -->
       <comp/>

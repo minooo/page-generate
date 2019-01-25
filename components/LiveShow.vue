@@ -26,7 +26,7 @@
           v-model="list"
           class="ptb15 plr15"
         >
-          <div v-if="list.length === 0">初始化</div>
+          <div v-if="list.length === 0">将组件拖放到这里</div>
           <template v-for="(item, index) in list" v-else>
             <div v-for="x in item.comp" :key="$uuid.v4()" @click="onComp(x, index)">
               <component :is="x.name" v-bind="x.prop">
@@ -85,14 +85,11 @@ export default {
     const app = this
     this.$root.$on('changelist', function(param) {
       const { curlist, index } = param
-      console.log('ccc', curlist)
       app.list.splice(index, 1, { ...app[index], comp: curlist })
-      console.log('app.list', app.list)
     })
   },
   methods: {
     onComp: function(item, index) {
-      console.log('list', this.list)
       this.$root.$emit('curlist', { item, index })
     }
   }
