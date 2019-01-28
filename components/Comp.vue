@@ -37,7 +37,10 @@ export default {
                     {
                       name: 'Input',
                       prop: {
-                        placeholder: 'enter sth1'
+                        placeholder: 'enter sth',
+                        style: 'width: 100%;',
+                        type: 'textarea',
+                        ':rows': '2'
                       }
                     }
                   ]
@@ -62,6 +65,42 @@ export default {
                         { name: 'Checkbox', prop: { label: 'Sleep' } },
                         { name: 'Checkbox', prop: { label: 'Run' } },
                         { name: 'Checkbox', prop: { label: 'Movie' } }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              title: '选择器',
+              ico: 'cube',
+              comp: [
+                {
+                  name: 'FormItem',
+                  tag: 'f-select',
+                  prop: {
+                    label: 'Select'
+                  },
+                  comp: [
+                    {
+                      name: 'Select',
+                      comp: [
+                        {
+                          name: 'Option',
+                          prop: { value: 'beijing', label: '北京' }
+                        },
+                        {
+                          name: 'Option',
+                          prop: { value: 'shanghai', label: '上海' }
+                        },
+                        {
+                          name: 'Option',
+                          prop: { value: 'shenzhen', label: '深圳' }
+                        },
+                        {
+                          name: 'Option',
+                          prop: { value: 'hangzhou', label: '广州' }
+                        }
                       ]
                     }
                   ]

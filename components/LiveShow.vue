@@ -26,9 +26,16 @@
           v-model="list"
           class="ptb15 plr15"
         >
-          <div v-if="list.length === 0">将组件拖放到这里</div>
+          <div v-if="list.length === 0">
+            提示：
+            <br>1，可将左侧组件拖放至此区域；
+            <br>2，此区域的组件可通过按下
+            <span class="bold c-main">Ctrl</span> +
+            <span class="bold c-main">左键</span>
+            打开属性配置界面
+          </div>
           <template v-for="(item, index) in list" v-else>
-            <div v-for="x in item.comp" :key="$uuid.v4()" @click="onComp(x, index)">
+            <div v-for="x in item.comp" :key="$uuid.v4()" @click.ctrl="onComp(x, index)">
               <component :is="x.name" v-bind="x.prop">
                 <template v-if="x.comp">
                   <component v-for="m in x.comp" :key="$uuid.v4()" :is="m.name" v-bind="m.prop">
